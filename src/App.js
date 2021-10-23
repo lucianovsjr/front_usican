@@ -1,21 +1,24 @@
 import React from 'react';
 import { Admin, Resource } from 'react-admin';
 import PeopleIcon from '@material-ui/icons/People';
-// import drfProvider from 'ra-data-drf';
+
 import dataProvider from './dataProvider';
-
 import authProvider from './authProvider';
+import i18nProvider from './translation';
 
-import { List, Create, Edit } from './resource/Client';
-
-// const dataProvider = drfProvider('http://localhost:8000/api')
+import { List, Create, Edit } from './resource/Customer';
 
 const App = () => (
-  <Admin title="Usican App" dataProvider={dataProvider} authProvider={authProvider}>
+  <Admin
+    title="Usican App"
+    dataProvider={dataProvider}
+    authProvider={authProvider}
+    i18nProvider={i18nProvider}
+  >
     <Resource
-      name="client"
+      name="customer"
       icon={PeopleIcon}
-      options={{ label: 'Clientes' }}
+      options={{ label: 'Cliente' }}
       list={List}
       create={Create}
       edit={Edit}
