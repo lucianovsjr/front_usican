@@ -5,6 +5,7 @@ import PeopleIcon from '@material-ui/icons/People';
 import dataProvider from './dataProvider';
 import authProvider from './authProvider';
 import i18nProvider from './translation';
+import LoginPage from './Login';
 
 import { List, Create, Edit } from './resource/Customer';
 
@@ -14,6 +15,7 @@ const App = () => (
     dataProvider={dataProvider}
     authProvider={authProvider}
     i18nProvider={i18nProvider}
+    loginPage={LoginPage}
   >
     <Resource
       name="customer"
