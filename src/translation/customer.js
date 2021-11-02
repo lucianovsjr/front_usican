@@ -1,5 +1,6 @@
 const customerMessages = {
     customer: {
+        name: "Cliente |||| Clientes",
         fields: {
             legal_entity: 'Tipo',
             name: 'Nome',
@@ -23,6 +24,9 @@ const customerMessages = {
             invalidCep: 'CEP inválido',
             sucessCreate: 'Cliente criado com sucesso',
             sucessUpdate: 'Cliente alterado com sucesso',
+        },
+        errors: {
+            protect: 'Existem registros associados ao cliente!',
         },
     },
 };

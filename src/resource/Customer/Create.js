@@ -122,6 +122,13 @@ const CustomerCreate = props => {
                 validate={validation.validatePhone}
             />
             <br/>
+            <TextInput
+                source="cep"
+                format={formatCep}
+                parse={parseCep}
+                className={classes.inputSm}
+                formClassName={classes.inputInline}
+            />
             <SelectInput
                 source="state"
                 choices={[
@@ -158,33 +165,32 @@ const CustomerCreate = props => {
                 formClassName={classes.inputInline}
             />
             <TextInput
-                source="cep"
-                format={formatCep}
-                parse={parseCep}
-                className={classes.inputSm}
-                formClassName={classes.inputInline}
-            />
-            <TextInput
-                source="public_place"
-                className={classes.imputLg}
+                source="city"
+                className={classes.inputMd}
                 formClassName={classes.inputInline}
             />
             <br/>
-            <TextInput
-                source="address_number"
-                className={classes.inputSm}
-                formClassName={classes.inputInline}
-            />
-            <TextInput
-                source="address_complement"
-                className={classes.imputLg}
-                formClassName={classes.inputInline}
-            />
             <TextInput
                 source="district"
                 className={classes.inputMd}
                 formClassName={classes.inputInline}
             />
+            <TextInput
+                source="address_complement"
+                className={classes.inputMd}
+                formClassName={classes.inputInline}
+            />
+            <br/>
+            <TextInput
+                source="public_place"
+                className={classes.inputMd}
+                formClassName={classes.inputInline}
+            />
+            <TextInput
+                source="address_number"
+                className={classes.inputSm}
+                formClassName={classes.inputInline}
+            />            
             <BooleanInput source="active" defaultValue={true} />
         </SimpleForm>
     </Create>
