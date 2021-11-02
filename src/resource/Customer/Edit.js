@@ -19,8 +19,6 @@ import { formatPhone, parsePhone } from '../../misc/formaters/phone';
 
 import cepFetch from '../../misc/cepFetch';
 
-import ToolbarOnlySave from '../../components/ToolbarOnlySave';
-
 import useStyles from './styles';
 import validation from './validation';
 
@@ -42,7 +40,7 @@ const CustomerEdit = props => {
     
     return (
         <Edit onSuccess={onSuccess} mutationMode="pessimistic" {...props}>
-            <SimpleForm toolbar={<ToolbarOnlySave />} redirect="list" validate={validation.validationCustomer}>
+            <SimpleForm redirect="list" validate={validation.validationCustomer}>
                 <FormDataConsumer>
                     {({ formData, ...rest }) => {
                         const _legalEntity = get(formData, "legal_entity");
