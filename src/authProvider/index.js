@@ -1,5 +1,3 @@
-import get from "lodash/get";
-
 const baseUrl = 'http://localhost:8000/api';
 
 const authClean = () => {
