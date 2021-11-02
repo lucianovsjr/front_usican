@@ -1,7 +1,10 @@
 import { fetchUtils } from 'react-admin';
 import drfProvider from 'ra-data-drf';
 
-const httpClient = (url, options = {}) => {
+import { authVerify } from '../authProvider';
+
+const httpClient = async (url, options = {}) => {
+    await authVerify();
     const token = localStorage.getItem('token');
 
     if (!options.headers) {

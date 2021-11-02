@@ -45,6 +45,8 @@ const styles = (theme) => ({
     icon: {
         minWidth: 80,
         minHeight: 80,
+        paddingTop: 8,
+        paddingBottom: 8,
     },
 });
 
