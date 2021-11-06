@@ -1,8 +1,10 @@
 import React from 'react';
 import { List, Datagrid, TextField, EmailField, BooleanField } from 'react-admin';
 
+import BulkActionButtons from '../../components/BulkActionButtons';
+
 const CustomerList = props => (
-    <List {...props}>
+    <List {...props} bulkActionButtons={<BulkActionButtons />}>
         <Datagrid rowClick="edit">
             <TextField source="id" />
             <TextField source="name" />
