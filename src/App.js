@@ -1,13 +1,15 @@
 import React from 'react';
 import { Admin, Resource } from 'react-admin';
 import PeopleIcon from '@material-ui/icons/People';
+import AllInboxIcon from '@material-ui/icons/AllInbox';
 
 import dataProvider from './dataProvider';
 import authProvider from './authProvider';
 import i18nProvider from './translation';
 import LoginPage from './Login';
 
-import { List, Create, Edit } from './resource/Customer';
+import Customer from './resource/Customer';
+import ProductType from './resource/ProductType';
 
 const App = () => (
   <Admin
@@ -21,9 +23,17 @@ const App = () => (
       name="customer"
       icon={PeopleIcon}
       options={{ label: 'Cliente' }}
-      list={List}
-      create={Create}
-      edit={Edit}
+      list={Customer.List}
+      create={Customer.Create}
+      edit={Customer.Edit}
+    />
+    <Resource
+      name="product_type"
+      icon={AllInboxIcon}
+      options={{ label: 'Tipo de produto' }}
+      list={ProductType.List}
+      edit={ProductType.Edit}
+      create={ProductType.Create}
     />
   </Admin>
 );
