@@ -18,7 +18,7 @@ const ProductTypeCreate = props => {
         <Create onSuccess={onSuccess} mutationMode="pessimistic" {...props}>
             <SimpleForm redirect="list" validate={validation.validationProductType} >
                 <TextInput source="name" validate={validation.validateName} required className={classes.inputMd} />
-                <TextInput source="description"className={classes.inputXLg} />
+                <TextInput source="description" validate={validation.validateDescription} className={classes.inputXLg} />
                 <BooleanInput source="active" defaultValue={true} />
             </SimpleForm>
         </Create>

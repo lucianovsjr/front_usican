@@ -5,15 +5,26 @@ const validateName = (value) => {
     }
 };
 
+const validateDescription = (value) => {
+    if (value && value.length > 200) {
+        return { 
+            message: 'ra.validation.maxLength',
+            args: { max: 200 },
+        };
+    }
+};
+
 const validationProductType = (values) => {
     const errors = {};
     if (!values.name) {
         errors.name = validateName(values.name);
     }
+    errors.description = validateDescription(values.description);
     return errors;
 };
 
 export default {
     validationProductType,
-    validateName
+    validateName,
+    validateDescription,
 };

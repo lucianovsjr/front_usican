@@ -8,6 +8,11 @@ const validateProductType = (value) => {
 const validateDescription = (value) => {
     if (!value) {
         return { message: 'ra.validation.required' };
+    } else if (value.length > 200) {
+        return { 
+            message: 'ra.validation.maxLength',
+            args: { max: 200 },
+        }
     }
 };
 
@@ -16,9 +21,7 @@ const validationProduct = (values) => {
     if (!values.product_type) {
         errors.product_type = validateProductType(values.product_type);
     }
-    if (!values.description) {
-        errors.description = validateDescription(values.description);
-    }
+    errors.description = validateDescription(values.description);
     return errors;
 };
 
