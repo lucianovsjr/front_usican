@@ -8,6 +8,7 @@ import dataProvider from './dataProvider';
 import authProvider from './authProvider';
 import i18nProvider from './translation';
 import LoginPage from './Login';
+import Layout from './Layout';
 
 import Customer from './resource/Customer';
 import ProductType from './resource/ProductType';
@@ -20,6 +21,7 @@ const App = () => (
     authProvider={authProvider}
     i18nProvider={i18nProvider}
     loginPage={LoginPage}
+    layout={Layout}
   >
     <Resource
       name="customer"
