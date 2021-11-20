@@ -2,6 +2,11 @@
 const validateName = (value) => {
     if (!value) {
         return { message: 'ra.validation.required' };
+    } else if (value.length > 50) {
+        return { 
+            message: 'ra.validation.maxLength',
+            args: { max: 50 },
+        };
     }
 };
 
