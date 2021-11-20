@@ -2,10 +2,14 @@ import ptBrMessages from 'ra-language-pt-br';
 import polyglotI18nProvider from 'ra-i18n-polyglot';
 
 import customerMessages from './customer';
+import productTypeMessages from './productType';
+import productMessages from './product';
 
 const resources = {
     resources: {
         ...customerMessages,
+        ...productTypeMessages,
+        ...productMessages,
     }
 };
 const messages = {
