@@ -1,13 +1,13 @@
 import React, { useState } from 'react';
 import {
     Create,
-    SimpleForm,
     TextInput,
     SelectInput,
-    BooleanInput,
     FormDataConsumer,
     useNotify,
     useRedirect,
+    TabbedForm,
+    FormTab,
 } from 'react-admin';
 import get from "lodash/get";
 import set from "lodash/set";
@@ -41,131 +41,122 @@ const CustomerCreate = props => {
 
     return (
     <Create onSuccess={onSuccess} {...props}>
-        <SimpleForm validate={validation.validationCustomer}>
-            <FormDataConsumer>
-                {({ formData, ...rest }) => {
-                    const _legalEntity = get(formData, "legal_entity");
-                    const _cep = get(formData, "cep", "");
-                    if (_legalEntity && legalEntity !== _legalEntity) {
-                        setLegalEntity(_legalEntity);
+        <TabbedForm validate={validation.validationCustomer}>
+            <FormTab label="resources.customer.tabs.identification">
+                <FormDataConsumer>
+                    {({ formData, ...rest }) => {
+                        const _legalEntity = get(formData, "legal_entity");
+                        const _cep = get(formData, "cep", "");
+                        if (_legalEntity && legalEntity !== _legalEntity) {
+                            setLegalEntity(_legalEntity);
+                        }
+                        if (_cep.length === 8 && cep !== _cep) {
+                            setCep(_cep);
+                            cepFetch(_cep)
+                            .then(response => {
+                                const { erro = false, bairro, complemento, localidade, logradouro, uf } = response;
+                                if (erro) {
+                                    onErroCepFetch();
+                                } else {
+                                    set(formData, 'state', uf);
+                                    set(formData, 'city', localidade);
+                                    set(formData, 'district', bairro);
+                                    set(formData, 'address_complement', complemento);
+                                    set(formData, 'public_place', logradouro);
+                                }
+                            })
+                        }
+                    }}
+                </FormDataConsumer>
+                <TextInput source="name" className={classes.inputXLg} required />
+                <SelectInput
+                    source="legal_entity"
+                    choices={[
+                        { id: '0', name: 'Física' },
+                        { id: '1', name: 'Jurídica' },
+                    ]}
+                    defaultValue="1"
+                    className={classes.inputSm}
+                    required
+                />
+                <TextInput
+                    source="identity_number"
+                    label={
+                        legalEntity === "1"
+                            ? "CNPJ"
+                            : "CPF"
                     }
-                    if (_cep.length === 8 && cep !== _cep) {
-                        setCep(_cep);
-                        cepFetch(_cep)
-                        .then(response => {
-                            const { erro = false, bairro, complemento, localidade, logradouro, uf } = response;
-                            if (erro) {
-                                onErroCepFetch();
-                            } else {
-                                set(formData, 'state', uf);
-                                set(formData, 'city', localidade);
-                                set(formData, 'district', bairro);
-                                set(formData, 'address_complement', complemento);
-                                set(formData, 'public_place', logradouro);
-                            }
-                        })
+                    format={
+                        (value) => legalEntity === "1"
+                            ? formatCnpj(value)
+                            : formatCpf(value)
                     }
-                }}
-            </FormDataConsumer>
-            <TextInput source="name" className={classes.inputXLg} required />
-            <SelectInput
-                source="legal_entity"
-                choices={[
-                    { id: '0', name: 'Física' },
-                    { id: '1', name: 'Jurídica' },
-                ]}
-                defaultValue="1"
-                className={classes.inputSm}
-                formClassName={classes.inputInline}
-                required
-            />
-            <TextInput
-                source="identity_number"
-                label={
-                    legalEntity === "1"
-                        ? "CNPJ"
-                        : "CPF"
-                }
-                format={
-                    (value) => legalEntity === "1"
-                        ? formatCnpj(value)
-                        : formatCpf(value)
-                }
-                parse={
-                    (value) => legalEntity === "1"
-                        ? parseCnpj(value)
-                        : parseCpf(value)
-                }
-                validate={(value) => validation.validateIdentityNumber(value, legalEntity)}
-                className={classes.inputMd}
-                formClassName={classes.inputInline}                            
-            />
-            <TextInput
-                source="email"
-                type="email"
-                className={classes.inputMd}
-                validate={validation.validateEmail}
-            />
-            <TextInput
-                source="phone_number"
-                className={classes.inputMd}
-                formClassName={classes.inputInline}
-                format={formatPhone}
-                parse={parsePhone}
-                validate={validation.validatePhone}
-            />
-            <TextInput
-                source="phone_number2"
-                className={classes.inputMd}
-                formClassName={classes.inputInline}
-                format={formatPhone}
-                parse={parsePhone}
-                validate={validation.validatePhone}
-            />
-            <br/>
-            <TextInput
-                source="cep"
-                format={formatCep}
-                parse={parseCep}
-                className={classes.inputSm}
-                formClassName={classes.inputInline}
-            />
-            <SelectInput
-                source="state"
-                choices={states}
-                defaultValue="RJ"
-                className={classes.inputSm}
-                formClassName={classes.inputInline}
-            />
-            <TextInput
-                source="city"
-                className={classes.inputMd}
-                formClassName={classes.inputInline}
-            />
-            <br/>
-            <TextInput
-                source="district"
-                className={classes.inputMd}
-                formClassName={classes.inputInline}
-            />
-            <TextInput
-                source="address_complement"
-                className={classes.inputMd}
-                formClassName={classes.inputInline}
-            />
-            <br/>
-            <TextInput
-                source="public_place"
-                className={classes.inputMd}
-                formClassName={classes.inputInline}
-            />
-            <TextInput
-                source="address_number"
-                className={classes.inputSm}
-                formClassName={classes.inputInline}
-            />            
-            <BooleanInput source="active" defaultValue={true} />
-        </SimpleForm>
+                    parse={
+                        (value) => legalEntity === "1"
+                            ? parseCnpj(value)
+                            : parseCpf(value)
+                    }
+                    validate={(value) => validation.validateIdentityNumber(value, legalEntity)}
+                    className={classes.inputMd}
+                />
+            </FormTab>
+            <FormTab label="resources.customer.tabs.contact">
+                <TextInput
+                    source="email"
+                    type="email"
+                    className={classes.inputMd}
+                    validate={validation.validateEmail}
+                />
+                <TextInput
+                    source="phone_number"
+                    className={classes.inputMd}
+                    format={formatPhone}
+                    parse={parsePhone}
+                    validate={validation.validatePhone}
+                />
+                <TextInput
+                    source="phone_number2"
+                    className={classes.inputMd}
+                    format={formatPhone}
+                    parse={parsePhone}
+                    validate={validation.validatePhone}
+                />
+            </FormTab>
+            <FormTab label="resources.customer.tabs.address">
+                <TextInput
+                    source="cep"
+                    format={formatCep}
+                    parse={parseCep}
+                    className={classes.inputMd}
+                />
+                <SelectInput
+                    source="state"
+                    choices={states}
+                    defaultValue=""
+                    className={classes.inputSm}
+                />
+                <TextInput
+                    source="city"
+                    className={classes.inputMd}
+                />
+                <TextInput
+                    source="district"
+                    className={classes.inputMd}
+                />
+                <TextInput
+                    source="address_complement"
+                    className={classes.inputLg}
+                />
+                <TextInput
+                    source="public_place"
+                    className={classes.inputLg}
+                />
+                <TextInput
+                    source="address_number"
+                    className={classes.inputSm}
+                />
+            </FormTab>
+        </TabbedForm>
     </Create>
 )};
 
