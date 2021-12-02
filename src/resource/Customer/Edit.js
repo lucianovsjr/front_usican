@@ -9,6 +9,11 @@ import {
     useRedirect,
     TabbedForm,
     FormTab,
+    ReferenceManyField,
+    Datagrid,
+    TextField,
+    BooleanField,
+    EditButton,
 } from 'react-admin';
 import get from "lodash/get";
 import set from "lodash/set";
@@ -20,6 +25,9 @@ import { formatPhone, parsePhone } from '../../misc/formaters/phone';
 import states from '../../misc/consts/states';
 
 import cepFetch from '../../misc/cepFetch';
+
+import PhoneField from "../../components/PhoneField";
+import CreateRelationButton from "../../components/CreateRelationButton";
 
 import useStyles from './styles';
 import validation from './validation';
@@ -154,6 +162,25 @@ const CustomerEdit = props => {
                     <TextInput
                         source="address_number"
                         className={classes.inputSm}
+                    />
+                </FormTab>
+                <FormTab label="resources.customer.tabs.contacts">
+                    <ReferenceManyField reference="contact" target="customer" sort={{ field: 'name', order: 'ASC' }} addLabel={false}>
+                        <Datagrid>
+                            <TextField source="name" />
+                            <TextField source="position" />
+                            <TextField source="email" />
+                            <PhoneField source="phone_number" />
+                            <PhoneField source="phone_number2" />
+                            <BooleanField source="active" />
+                            <EditButton />
+                        </Datagrid>
+                    </ReferenceManyField>
+                    <CreateRelationButton
+                        resourceRelation="contact"
+                        tabRedirect="3"
+                        label="resources.customer.buttons.createContact"
+                        className={classes.createRelationButton}
                     />
                 </FormTab>
             </TabbedForm>

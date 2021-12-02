@@ -21,6 +21,7 @@ const customerMessages = {
             identification: 'Indetificação',
             contact: 'Contato',
             address: 'Endereço',
+            contacts: 'Contatos',
         },
         validation: {
             phone: 'Deve ser um número de telefone válido',
@@ -33,6 +34,9 @@ const customerMessages = {
         },
         errors: {
             protect: 'Existem registros associados ao cliente!',
+        },
+        buttons: {
+            createContact: 'Novo contato',
         },
     },
 };

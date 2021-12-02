@@ -11,6 +11,7 @@ import LoginPage from './Login';
 import Layout from './Layout';
 
 import Customer from './resource/Customer';
+import Contact from './resource/Contact';
 import ProductType from './resource/ProductType';
 import Product from './resource/Product';
 
@@ -30,6 +31,11 @@ const App = () => (
       list={Customer.List}
       create={Customer.Create}
       edit={Customer.Edit}
+    />
+    <Resource
+      name="contact"
+      create={Contact.Create}
+      edit={Contact.Edit}
     />
     <Resource
       name="product_type"
