@@ -10,7 +10,7 @@ import {
 } from "react-admin";
 
 // import useStyles from './styles';
-import EditToolbar from "../../components/EditToolbar";
+import { EditToolbar } from "../../components/Toolbar";
 
 
 const ContactEdit = props => {

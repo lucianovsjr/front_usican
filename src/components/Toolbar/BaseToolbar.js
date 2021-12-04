@@ -10,7 +10,7 @@ import {
 import { makeStyles } from '@material-ui/styles';
 import get from "lodash/get";
 
-import BackButton from "./BackButton";
+import BackButton from "./../BackButton";
 
 const styles = theme => ({
     defaultToolbar: {
@@ -33,26 +33,37 @@ const styles = theme => ({
 
 const useStyles = makeStyles(theme => styles(theme));
 
-const EditToolbar = props => {
+const BaseToolbar = props => {
     const notify = useNotify();
     const redirect = useRedirect();
     const classes = useStyles();
+
+    const onSuccessSave = ({ data }) => {
+        localStorage.removeItem(props.resource);
+        notify(`resources.${props.resource}.messages.sucessCreate`, { type: 'success' });
+        console.log(data);
+        redirect(get(data, 'link_redirect', 'list'));
+    };
     
     const onSuccessDelete = ({ data }) => {
         notify(`resources.${props.resource}.messages.sucessDelete`, 'info', { smart_count: 1 });
         redirect(get(data, 'link_redirect', 'list'));
     };
-    console.log(props)
     
     return (
         <Toolbar {...props} className={classes.defaultToolbar}>
             <div className={classes.primaryButtonsToolbar}>
-                <SaveButton {...props} />
-                <BackButton
+                <SaveButton
                     {...props}
-                    pathRedirect={get(props, 'record.link_redirect')}
-                    className={classes.cancelButton}
+                    onSuccess={onSuccessSave}
                 />
+                {get(props, 'record.link_redirect') &&
+                    <BackButton
+                        {...props}
+                        pathRedirect={get(props, 'record.link_redirect')}
+                        className={classes.cancelButton}
+                    />
+                }
             </div>
             <DeleteButton
                 {...props}
@@ -63,4 +74,4 @@ const EditToolbar = props => {
     );
 };
 
-export default EditToolbar;
+export default BaseToolbar;

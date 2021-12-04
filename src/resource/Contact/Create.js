@@ -1,11 +1,11 @@
 import React, { useState, useEffect, useMemo } from "react";
-import { Create, TextInput, useNotify, useRedirect, TabbedForm, FormTab } from "react-admin";
+import { Create, TextInput, TabbedForm, FormTab } from "react-admin";
 import get from "lodash/get";
+
+import { CreateToolbar } from "../../components/Toolbar";
 
 const ContactContainer = props => {
     const [location, setLocation] = useState({});
-    const notify = useNotify();
-    const redirect = useRedirect();
 
     useEffect(() => {
         if (get(props.location, 'fatherResource')) {
@@ -14,27 +14,27 @@ const ContactContainer = props => {
         } else {
             setLocation(JSON.parse(localStorage.getItem(props.resource)));
         }
-        
     }, [props.resource, props.location]);
 
-    const linkRedirect = useMemo(() =>
-        `/customer/${get(location, "fatherResource.record.id")}/${get(location, "fatherResource.tabRedirect")}`
-    , [location]);
-
-    const onSuccess = ({ data }) => {
-        localStorage.removeItem(props.resource);
-        notify('resources.contact.messages.sucessCreate', { type: 'success' });
-        redirect(data.link_redirect);
-    };
+    const linkRedirect = useMemo(() => {
+        const id = get(location, "fatherResource.record.id");
+        const tabRedirect = get(location, "fatherResource.tabRedirect");
+        if (id && tabRedirect) {
+            return `/customer/${id}/${tabRedirect}`;
+        } else {
+            return '';
+        }
+    }, [location]);
 
     return (
-        <Create {...props} onSuccess={onSuccess}>
+        <Create {...props}>
             <TabbedForm
                 initialValues={{
                     customer: get(location, "fatherResource.record.id"),
                     customer_name: get(location, "fatherResource.record.name"),
                     link_redirect: linkRedirect,
                 }}
+                toolbar={<CreateToolbar linkRedirect={linkRedirect} />}
             >
                 <FormTab label="resources.contact.tabs.identification">
                     <TextInput source="customer_name" disabled/>
