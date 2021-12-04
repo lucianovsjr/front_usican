@@ -8,6 +8,7 @@ import {
     useRedirect,
     TabbedForm,
     FormTab,
+    maxLength,
 } from 'react-admin';
 import get from "lodash/get";
 import set from "lodash/set";
@@ -68,7 +69,7 @@ const CustomerCreate = props => {
                         }
                     }}
                 </FormDataConsumer>
-                <TextInput source="name" className={classes.inputXLg} required />
+                <TextInput source="name" className={classes.inputXLg} validate={[maxLength(40)]} required />
                 <SelectInput
                     source="legal_entity"
                     choices={[
@@ -104,7 +105,7 @@ const CustomerCreate = props => {
                 <TextInput
                     source="email"
                     type="email"
-                    className={classes.inputMd}
+                    className={classes.inputLg}
                     validate={validation.validateEmail}
                 />
                 <TextInput

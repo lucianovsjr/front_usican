@@ -1,11 +1,16 @@
 import React, { useState, useEffect, useMemo } from "react";
-import { Create, TextInput, TabbedForm, FormTab } from "react-admin";
+import { Create, TextInput, TabbedForm, FormTab, maxLength } from "react-admin";
 import get from "lodash/get";
 
+import { formatPhone, parsePhone } from '../../misc/formaters/phone';
 import { CreateToolbar } from "../../components/Toolbar";
+
+import useStyles from './styles';
+import validation from './validation';
 
 const ContactContainer = props => {
     const [location, setLocation] = useState({});
+    const classes = useStyles();
 
     useEffect(() => {
         if (get(props.location, 'fatherResource')) {
@@ -35,16 +40,48 @@ const ContactContainer = props => {
                     link_redirect: linkRedirect,
                 }}
                 toolbar={<CreateToolbar linkRedirect={linkRedirect} />}
+                validate={validation.validationContact}
             >
                 <FormTab label="resources.contact.tabs.identification">
-                    <TextInput source="customer_name" disabled/>
-                    <TextInput source="name" />
-                    <TextInput source="position" />
+                    <TextInput
+                        source="customer_name"
+                        className={classes.inputXLg}
+                        disabled
+                    />
+                    <TextInput
+                        source="name"
+                        className={classes.inputXLg}
+                        required
+                        validate={[maxLength(40)]}
+                    />
+                    <TextInput
+                        source="position"
+                        className={classes.inputLg}
+                        required
+                        validate={[maxLength(20)]}
+                    />
                 </FormTab>
                 <FormTab label="resources.contact.tabs.contact">
-                    <TextInput source="email" />
-                    <TextInput source="phone_number" />
-                    <TextInput source="phone_number2" />
+                    <TextInput
+                        source="email"
+                        type="email"
+                        className={classes.inputLg}
+                        validate={validation.validateEmail}
+                    />
+                    <TextInput
+                        source="phone_number"
+                        className={classes.inputMd}
+                        format={formatPhone}
+                        parse={parsePhone}
+                        validate={validation.validatePhone}
+                    />
+                    <TextInput
+                        source="phone_number2"
+                        className={classes.inputMd}
+                        format={formatPhone}
+                        parse={parsePhone}
+                        validate={validation.validatePhone}
+                    />
                 </FormTab>
             </TabbedForm>
         </Create>

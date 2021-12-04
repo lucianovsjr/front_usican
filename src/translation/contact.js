@@ -2,7 +2,7 @@ const contactMessages = {
     contact: {
         name: "Contato |||| Contatos",
         fields: {
-            customerName: 'Cliente',
+            customer_name: 'Cliente',
             name: 'Nome',
             position: 'Cargo',
             email: 'E-mail',
