@@ -10,6 +10,7 @@ import {
 } from "react-admin";
 
 // import useStyles from './styles';
+import { formatPhone, parsePhone } from '../../misc/formaters/phone';
 import { EditToolbar } from "../../components/Toolbar";
 
 
@@ -33,8 +34,16 @@ const ContactEdit = props => {
                 </FormTab>
                 <FormTab label="resources.contact.tabs.contact">
                     <TextInput source="email" />
-                    <TextInput source="phone_number" />
-                    <TextInput source="phone_number2" />
+                    <TextInput
+                        source="phone_number"
+                        format={formatPhone}
+                        parse={parsePhone}
+                    />
+                    <TextInput
+                        source="phone_number2"
+                        format={formatPhone}
+                        parse={parsePhone}
+                    />
                 </FormTab>
             </TabbedForm>
         </Edit>
