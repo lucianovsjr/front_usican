@@ -1,5 +1,5 @@
 import React from "react";
-import { Create, SimpleForm, TextInput, BooleanInput, useNotify, useRedirect } from "react-admin";
+import { Create, SimpleForm, TextInput, useNotify, useRedirect } from "react-admin";
 
 import useStyles from './styles';
 import validation from './validation';
@@ -19,7 +19,6 @@ const ProductTypeCreate = props => {
             <SimpleForm redirect="list" validate={validation.validationProductType} >
                 <TextInput source="name" validate={validation.validateName} required className={classes.inputMd} />
                 <TextInput source="description" validate={validation.validateDescription} className={classes.inputXLg} />
-                <BooleanInput source="active" defaultValue={true} />
             </SimpleForm>
         </Create>
     );
