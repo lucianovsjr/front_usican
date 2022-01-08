@@ -10,8 +10,10 @@ const styles = theme => ({
     inputMd: { width: 280 },
     inputLg: { width: 420 },
     inputXLg: { width: 660 },
-    createRelationButton: {
-        width: 157,
+    defaultToolbar: {
+        flex: 1,
+        display: 'flex',
+        justifyContent: 'space-between',
     },
 });
 

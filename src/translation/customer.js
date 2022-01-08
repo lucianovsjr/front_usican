@@ -9,12 +9,19 @@ const customerMessages = {
             phone_number: 'Telefone 1',
             phone_number2: 'Telefone 2',
             cep: 'CEP',
+            state: 'Estado',
             public_place: 'Endereço',
             address_number: 'Número',
             address_complement: 'Complemento',
             district: 'Bairro',
             active: 'Ativo',
             city: 'Cidade',
+        },
+        tabs: {
+            identification: 'Indetificação',
+            contact: 'Contato',
+            address: 'Endereço',
+            contacts: 'Contatos',
         },
         validation: {
             phone: 'Deve ser um número de telefone válido',
@@ -27,6 +34,9 @@ const customerMessages = {
         },
         errors: {
             protect: 'Existem registros associados ao cliente!',
+        },
+        buttons: {
+            createContact: 'Novo contato',
         },
     },
 };
