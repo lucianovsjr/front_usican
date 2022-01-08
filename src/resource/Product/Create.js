@@ -3,7 +3,6 @@ import {
     Create,
     SimpleForm,
     TextInput,
-    BooleanInput,
     ReferenceInput,
     SelectInput,
     useNotify,
@@ -31,7 +30,6 @@ const ProductCreate = props => {
                 </ReferenceInput>
                 <TextInput source="description" className={classes.inputXLg} required validate={validation.validateDescription} />
                 <TextInput source="full_description" multiline minRows={3} maxRows={5} className={classes.inputXLg} />
-                <BooleanInput source="active" defaultValue={true} />
             </SimpleForm>
         </Create>
     );
