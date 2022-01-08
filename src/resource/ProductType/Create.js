@@ -1,5 +1,5 @@
 import React from "react";
-import { Create, SimpleForm, TextInput, useNotify, useRedirect } from "react-admin";
+import { Create, TabbedForm, FormTab, TextInput, useNotify, useRedirect } from "react-admin";
 
 import useStyles from './styles';
 import validation from './validation';
@@ -16,10 +16,12 @@ const ProductTypeCreate = props => {
 
     return (
         <Create onSuccess={onSuccess} mutationMode="pessimistic" {...props}>
-            <SimpleForm redirect="list" validate={validation.validationProductType} >
-                <TextInput source="name" validate={validation.validateName} required className={classes.inputMd} />
-                <TextInput source="description" validate={validation.validateDescription} className={classes.inputXLg} />
-            </SimpleForm>
+            <TabbedForm redirect="list" validate={validation.validationProductType} >
+                <FormTab label="resources.product_type.tabs.general">
+                    <TextInput source="name" validate={validation.validateName} required className={classes.inputMd} />
+                    <TextInput source="description" validate={validation.validateDescription} className={classes.inputXLg} />
+                </FormTab>
+            </TabbedForm>
         </Create>
     );
 };

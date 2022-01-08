@@ -6,6 +6,9 @@ const productTypeMessages = {
             description: 'Descrição',
             active: 'Ativo',
         },
+        tabs: {
+            general: 'Geral',
+        },
         messages: {
             sucessCreate: 'Tipo de Produto criado com sucesso',
             sucessUpdate: 'Tipo de Produto alterado com sucesso',

@@ -1,7 +1,8 @@
 import React from "react";
 import {
     Create,
-    SimpleForm,
+    TabbedForm,
+    FormTab,
     TextInput,
     ReferenceInput,
     SelectInput,
@@ -24,13 +25,15 @@ const ProductCreate = props => {
     
     return (
         <Create onSuccess={onSuccess} mutationMode="pessimistic" {...props}>
-            <SimpleForm redirect="list" validate={validation.validationProduct}>
-                <ReferenceInput source="product_type" reference="product_type" required validate={validation.validateProductType}>
-                    <SelectInput optionText="name" />
-                </ReferenceInput>
-                <TextInput source="description" className={classes.inputXLg} required validate={validation.validateDescription} />
-                <TextInput source="full_description" multiline minRows={3} maxRows={5} className={classes.inputXLg} />
-            </SimpleForm>
+            <TabbedForm redirect="list" validate={validation.validationProduct}>
+                <FormTab label="resources.product.tabs.general">
+                    <ReferenceInput source="product_type" reference="product_type" required validate={validation.validateProductType}>
+                        <SelectInput optionText="name" />
+                    </ReferenceInput>
+                    <TextInput source="description" className={classes.inputXLg} required validate={validation.validateDescription} />
+                    <TextInput source="full_description" multiline minRows={3} maxRows={5} className={classes.inputXLg} />
+                </FormTab>
+            </TabbedForm>
         </Create>
     );
 }
