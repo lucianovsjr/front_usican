@@ -1,8 +1,10 @@
 import React from "react";
 import { List, Datagrid, TextField, BooleanField, ReferenceField  } from "react-admin";
 
+import ProductFilters from './filters';
+
 const ProductList = props => (
-    <List {...props}>
+    <List {...props} filters={ProductFilters}>
         <Datagrid rowClick="edit">
             <ReferenceField source="product_type" reference="product_type">
                 <TextField source="name" />
