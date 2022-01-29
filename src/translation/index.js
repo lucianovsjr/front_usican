@@ -3,6 +3,7 @@ import polyglotI18nProvider from 'ra-i18n-polyglot';
 
 import customerMessages from './customer';
 import contactMessages from './contact';
+import budgetRequestMessages from './budgetRequest';
 import productTypeMessages from './productType';
 import productMessages from './product';
 
@@ -12,6 +13,7 @@ const resources = {
         ...contactMessages,
         ...productTypeMessages,
         ...productMessages,
+        ...budgetRequestMessages,
     }
 };
 const messages = {
