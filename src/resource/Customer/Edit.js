@@ -19,6 +19,8 @@ import {
 import get from "lodash/get";
 import set from "lodash/set";
 
+import DefaultActions from '../../components/DefaultActions';
+
 import { formatCep, parseCep } from '../../misc/formaters/cep';
 import { formatCpf, parseCpf } from '../../misc/formaters/cpf';
 import { formatCnpj, parseCnpj } from '../../misc/formaters/cnpj';
@@ -50,7 +52,7 @@ const CustomerEdit = props => {
     };
     
     return (
-        <Edit onSuccess={onSuccess} mutationMode="pessimistic" {...props}>
+        <Edit {...props} onSuccess={onSuccess} mutationMode="pessimistic" actions={<DefaultActions />}>
             <TabbedForm redirect="list" validate={validation.validationCustomer}>
                 <FormTab label="resources.customer.tabs.identification">
                     <FormDataConsumer>

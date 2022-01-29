@@ -1,6 +1,8 @@
 import React from "react";
 import { Create, TabbedForm, FormTab, TextInput, useNotify, useRedirect } from "react-admin";
 
+import DefaultActions from '../../components/DefaultActions';
+
 import useStyles from './styles';
 import validation from './validation';
 
@@ -15,7 +17,7 @@ const ProductTypeCreate = props => {
     };
 
     return (
-        <Create onSuccess={onSuccess} mutationMode="pessimistic" {...props}>
+        <Create {...props} onSuccess={onSuccess} mutationMode="pessimistic" actions={<DefaultActions />}>
             <TabbedForm redirect="list" validate={validation.validationProductType} >
                 <FormTab label="resources.product_type.tabs.general">
                     <TextInput source="name" validate={validation.validateName} required className={classes.inputMd} />
