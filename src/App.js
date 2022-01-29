@@ -3,6 +3,7 @@ import { Admin, Resource } from 'react-admin';
 import PeopleIcon from '@material-ui/icons/People';
 import AllInboxIcon from '@material-ui/icons/AllInbox';
 import InboxIcon from '@material-ui/icons/Inbox';
+import LibraryBooksIcon from '@material-ui/icons/LibraryBooks';
 
 import dataProvider from './dataProvider';
 import authProvider from './authProvider';
@@ -12,6 +13,7 @@ import Layout from './Layout';
 
 import Customer from './resource/Customer';
 import Contact from './resource/Contact';
+import BudgetRequest from './resource/BudgetRequest';
 import ProductType from './resource/ProductType';
 import Product from './resource/Product';
 
@@ -53,6 +55,15 @@ const App = () => (
       edit={Product.Edit}
       create={Product.Create}
     />
+    <Resource
+      name="budget_request"
+      icon={LibraryBooksIcon}
+      list={BudgetRequest.List}
+      edit={BudgetRequest.Edit}
+      create={BudgetRequest.Create}
+    />
+    <Resource name="custom_option" />
+    <Resource name="custom_option_item" />
   </Admin>
 );
 
