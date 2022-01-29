@@ -14,6 +14,7 @@ import {
 } from "react-admin";
 
 import CustomOptionInput from '../../components/CustomOptionInput';
+import DefaultActions from '../../components/DefaultActions';
 
 import useStyles from "./styles";
 import validation from "./validation";
@@ -29,7 +30,7 @@ const BudgetRequestEdit = props => {
     };
     
     return (
-        <Edit {...props} onSuccess={onSuccess} mutationMode="pessimistic">
+        <Edit {...props} onSuccess={onSuccess} mutationMode="pessimistic" actions={<DefaultActions />}>
             <TabbedForm redirect="list" validate={validation.validationBudgetRequest}>
                 <FormTab label="resources.budget_request.tabs.general">
                     <ReferenceInput source="customer" reference="customer" required disabled>

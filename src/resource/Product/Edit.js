@@ -11,6 +11,8 @@ import {
     useRedirect
 } from "react-admin";
 
+import DefaultActions from '../../components/DefaultActions';
+
 import useStyles from "./styles";
 import validation from "./validation";
 
@@ -25,7 +27,7 @@ const ProductEdit = props => {
     };
     
     return (
-        <Edit onSuccess={onSuccess} mutationMode="pessimistic" {...props}>
+        <Edit {...props} onSuccess={onSuccess} mutationMode="pessimistic" actions={<DefaultActions />}>
             <TabbedForm redirect="list" validate={validation.validationProduct}>
                 <FormTab label="resources.product.tabs.general">
                     <ReferenceInput source="product_type" reference="product_type" required validate={validation.validateProductType}>

@@ -13,6 +13,8 @@ import {
 import get from "lodash/get";
 import set from "lodash/set";
 
+import DefaultActions from '../../components/DefaultActions';
+
 import { formatCep, parseCep } from '../../misc/formaters/cep';
 import { formatCpf, parseCpf } from '../../misc/formaters/cpf';
 import { formatCnpj, parseCnpj } from '../../misc/formaters/cnpj';
@@ -41,7 +43,7 @@ const CustomerCreate = props => {
     };
 
     return (
-    <Create onSuccess={onSuccess} {...props}>
+    <Create {...props} onSuccess={onSuccess} actions={<DefaultActions />}>
         <TabbedForm validate={validation.validationCustomer}>
             <FormTab label="resources.customer.tabs.identification">
                 <FormDataConsumer>

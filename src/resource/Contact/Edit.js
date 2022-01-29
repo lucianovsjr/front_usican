@@ -15,6 +15,7 @@ import { EditToolbar } from "../../components/Toolbar";
 
 import useStyles from './styles';
 import validation from './validation';
+import Actions from './Actions';
 
 
 const ContactEdit = props => {
@@ -28,7 +29,7 @@ const ContactEdit = props => {
     };
 
     return (
-        <Edit {...props} onSuccess={onSuccess} mutationMode="pessimistic">
+        <Edit {...props} onSuccess={onSuccess} mutationMode="pessimistic" actions={<Actions />}>
             <TabbedForm toolbar={<EditToolbar />} validate={validation.validationContact}>
                 <FormTab label="resources.contact.tabs.identification">
                     <TextInput

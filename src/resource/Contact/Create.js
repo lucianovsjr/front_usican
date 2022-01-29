@@ -7,6 +7,7 @@ import { CreateToolbar } from "../../components/Toolbar";
 
 import useStyles from './styles';
 import validation from './validation';
+import Actions from './Actions';
 
 const ContactContainer = props => {
     const [location, setLocation] = useState({});
@@ -32,14 +33,14 @@ const ContactContainer = props => {
     }, [location]);
 
     return (
-        <Create {...props}>
+        <Create {...props} actions={<Actions linkRedirect={linkRedirect} />}>
             <TabbedForm
                 initialValues={{
                     customer: get(location, "fatherResource.record.id"),
                     customer_name: get(location, "fatherResource.record.name"),
                     link_redirect: linkRedirect,
                 }}
-                toolbar={<CreateToolbar linkRedirect={linkRedirect} />}
+                toolbar={<CreateToolbar />}
                 validate={validation.validationContact}
             >
                 <FormTab label="resources.contact.tabs.identification">

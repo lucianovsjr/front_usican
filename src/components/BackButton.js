@@ -16,7 +16,6 @@ const BackButton = (props) => {
         icon = defaultIcon,
         label = 'ra.action.back',
         scrollToTop = true,
-        variant = 'outlined',
         record,
         ...rest
     } = props;
@@ -51,10 +50,7 @@ const BackButton = (props) => {
             <Button
                 component={Link}
                 to={location}
-                className={classnames(classes.button, className)}
                 label={label}
-                variant={variant}
-                color="inherit"
                 {...rest}
             >
                 {icon}
@@ -79,7 +75,7 @@ const useStyles = makeStyles(
         },
         button: {
             // flex: 0,
-            height: 36.5,
+            // height: 36.5,
         },
     }),
     { name: 'RaCreateButton' }

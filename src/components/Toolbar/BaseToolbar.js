@@ -10,8 +10,6 @@ import {
 import { makeStyles } from '@material-ui/styles';
 import get from "lodash/get";
 
-import BackButton from "./../BackButton";
-
 const styles = theme => ({
     defaultToolbar: {
         flex: 1,
@@ -24,10 +22,6 @@ const styles = theme => ({
         display: 'flex',
         justifyContent: 'flex-start',
         alignItems: 'center',
-    },
-    cancelButton: {
-        flex: 0,
-        marginLeft: theme.spacing.unit,
     },
 });
 
@@ -52,19 +46,10 @@ const BaseToolbar = props => {
     
     return (
         <Toolbar {...props} className={classes.defaultToolbar}>
-            <div className={classes.primaryButtonsToolbar}>
-                <SaveButton
-                    {...props}
-                    onSuccess={onSuccessSave}
-                />
-                {get(props, 'record.link_redirect') &&
-                    <BackButton
-                        {...props}
-                        pathRedirect={get(props, 'record.link_redirect')}
-                        className={classes.cancelButton}
-                    />
-                }
-            </div>
+            <SaveButton
+                {...props}
+                onSuccess={onSuccessSave}
+            />
             <DeleteButton
                 {...props}
                 mutationMode="pessimistic"

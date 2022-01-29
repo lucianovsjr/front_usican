@@ -15,6 +15,7 @@ import {
 import set from "lodash/set";
 
 import CustomOptionInput from '../../components/CustomOptionInput';
+import DefaultActions from '../../components/DefaultActions';
 
 import useStyles from "./styles";
 import validation from "./validation";
@@ -36,6 +37,7 @@ const BudgetRequestCreate = props => {
             onSuccess={onSuccess}
             mutationMode="pessimistic"
             transform={(data) => ({...data, deadline: !data.deadline ? null : data.deadline})}
+            actions={<DefaultActions />}
         >
             <TabbedForm redirect="list" validate={validation.validationBudgetRequest}>
                 <FormTab label="resources.budget_request.tabs.general">
