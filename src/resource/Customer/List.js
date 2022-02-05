@@ -7,7 +7,7 @@ import PhoneField from "../../components/PhoneField";
 import CustomerFilters from './filters';
 
 const CustomerList = props => (
-    <List {...props} bulkActionButtons={<BulkActionButtons />} filters={CustomerFilters}>
+    <List {...props} bulkActionButtons={<BulkActionButtons />} filters={CustomerFilters} empty={false}>
         <Datagrid rowClick="edit">
             <TextField source="name" />
             <TextField source="email" />

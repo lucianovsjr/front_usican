@@ -4,7 +4,7 @@ import { List, Datagrid, TextField, BooleanField, ReferenceField  } from "react-
 import ProductFilters from './filters';
 
 const ProductList = props => (
-    <List {...props} filters={ProductFilters}>
+    <List {...props} filters={ProductFilters} empty={false}>
         <Datagrid rowClick="edit">
             <ReferenceField source="product_type" reference="product_type">
                 <TextField source="name" />
