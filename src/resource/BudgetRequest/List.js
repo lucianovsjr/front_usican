@@ -7,7 +7,7 @@ import DateField from '../../components/ra/DateField';
 import filters from './filters';
 
 const BudgetRequestList = props => (
-    <List {...props} filters={filters} filterDefaultValues={{ status: 1 }}>
+    <List {...props} filters={filters} filterDefaultValues={{ status: 1 }} empty={false}>
         <Datagrid rowClick="edit">
             <ReferenceField source="customer" reference="customer">
                 <TextField source="name" />
