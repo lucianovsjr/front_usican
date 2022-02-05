@@ -26,10 +26,28 @@ const App = () => (
     loginPage={LoginPage}
     layout={Layout}
   >
+    {/* Inventory */}
+    <Resource
+      name="product_type"
+      icon={AllInboxIcon}
+      options={{ module: "inventory" }}
+      list={ProductType.List}
+      edit={ProductType.Edit}
+      create={ProductType.Create}
+    />
+    <Resource
+      name="product"
+      icon={InboxIcon}
+      options={{ module: "inventory" }}
+      list={Product.List}
+      edit={Product.Edit}
+      create={Product.Create}
+    />
+    {/* Sales */}
     <Resource
       name="customer"
       icon={PeopleIcon}
-      options={{ label: 'Cliente' }}
+      options={{ module: "sales" }}
       list={Customer.List}
       create={Customer.Create}
       edit={Customer.Edit}
@@ -38,30 +56,17 @@ const App = () => (
       name="contact"
       create={Contact.Create}
       edit={Contact.Edit}
-    />
-    <Resource
-      name="product_type"
-      icon={AllInboxIcon}
-      options={{ label: 'Tipo de produto' }}
-      list={ProductType.List}
-      edit={ProductType.Edit}
-      create={ProductType.Create}
-    />
-    <Resource
-      name="product"
-      icon={InboxIcon}
-      options={{ label: 'Produto' }}
-      list={Product.List}
-      edit={Product.Edit}
-      create={Product.Create}
+      module="sales"
     />
     <Resource
       name="budget_request"
       icon={LibraryBooksIcon}
+      options={{ module: "sales" }}
       list={BudgetRequest.List}
       edit={BudgetRequest.Edit}
       create={BudgetRequest.Create}
     />
+    {/* Configurator */}
     <Resource name="custom_option" />
     <Resource name="custom_option_item" />
   </Admin>
