@@ -18,4 +18,4 @@ export const formatPhone = (value) => {
     return valueFormated;
 };
 
-export const parsePhone = (value) => value.replace('(', '').replace(') ', '').replace('-', '');
+export const parsePhone = (value) => value.replace('(', '').replace(') ', '').replace('-', '').slice(0, 12);
