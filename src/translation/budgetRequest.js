@@ -12,7 +12,7 @@ const budgetRequestMessages = {
             observation_reason: 'Observação do Declínio',
             means_receipt: 'Meio de Recebimento',
             informed_customer_decline: 'Declínio informado ao Cliente?',
-            status: 'status',
+            status: 'Status',
         },
         tabs: {
             general: 'Geral',

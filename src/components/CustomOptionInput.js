@@ -6,6 +6,7 @@ const CustomOptionInput = (props) => (
         {...props}
         reference="custom_option_item"
         filter={{ custom_option__name: `${props.resource}.${props.source}` }}
+        sort={{ field: 'name', order: 'ASC' }}
     >
         <SelectInput optionText="name" />
     </ReferenceInput>
