@@ -7,8 +7,8 @@ import DateField from '../../components/ra/DateField';
 import filters from './filters';
 
 const BudgetRequestList = props => (
-    <List {...props} filters={filters} filterDefaultValues={{ status: 1 }} empty={false}>
-        <Datagrid rowClick="edit">
+    <List {...props} filters={filters} filterDefaultValues={{ status: 4 }} empty={false}>
+        <Datagrid rowClick={(id, basePath, record) => record.status === 6 ? 'show' : 'edit'}>
             <ReferenceField source="customer" reference="customer">
                 <TextField source="name" />
             </ReferenceField>

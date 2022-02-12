@@ -38,6 +38,7 @@ const BudgetRequestCreate = props => {
             mutationMode="pessimistic"
             transform={(data) => ({...data, deadline: !data.deadline ? null : data.deadline})}
             actions={<DefaultActions />}
+            record={{ status: 4 }}
         >
             <TabbedForm redirect="list" validate={validation.validationBudgetRequest}>
                 <FormTab label="resources.budget_request.tabs.general">
@@ -77,7 +78,6 @@ const BudgetRequestCreate = props => {
                         maxRows={5}
                         className={classes.inputXLg}
                     />
-                    <CustomOptionInput source="status" required />
                 </FormTab>
             </TabbedForm>
         </Create>
