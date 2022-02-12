@@ -57,8 +57,6 @@ const Menu = (props) => {
     const open = useSelector(state => state.admin.ui.sidebarOpen)
 
     const moduleResources = MODULES.map(module => resources.filter(resource => get(resource, 'options.module') === module.key))
-    console.log(resources)
-    console.log(moduleResources)
 
     return (
         <raMenu className={classes.rootMenu} {...props}>
