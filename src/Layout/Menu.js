@@ -22,7 +22,7 @@ const useStyles = makeStyles({
     },
 });
 
-const ModuleMenu = ({items, title, onMenuClick, open, ...rest}) => {
+const ModuleMenu = ({items, title, open, ...rest}) => {
     const classes = useStyles();
     const translate = useTranslate()
 
@@ -34,10 +34,12 @@ const ModuleMenu = ({items, title, onMenuClick, open, ...rest}) => {
             {items.map(item => item.hasList && (
                 <MenuItemLink
                     key={item.name}
-                    to={`${item.name}`}
+                    to={{
+                            pathname: `/${item.name}`,
+                            state: { _scrollToTop: true },
+                        }}
                     primaryText={item.options.label || translate(`resources.${item.name}.name`, { smart_count: 1 })}
                     leftIcon={item.icon ? <item.icon /> : <DefaultIcon />}
-                    onClick={onMenuClick}
                     sidebarIsOpen={open}
                 />
             ))}
@@ -63,7 +65,6 @@ const Menu = (props) => {
                                     items={moduleResources[i]}
                                     title={module.name}
                                     open={open}
-                                    onMenuClick={props.onMenuClick}
                                 />
                             )
                 )
