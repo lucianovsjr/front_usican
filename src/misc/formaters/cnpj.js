@@ -6,22 +6,22 @@ export const formatCnpj = (value) => {
     }
 
     if (valueUnformated.length >= 1) {
-        valueFormated = valueUnformated.slice(0, 3)
+        valueFormated = valueUnformated.slice(0, 2)
     }
-    if (valueUnformated.length >= 3) {
-        valueFormated += "." + valueUnformated.slice(3, 6);
+    if (valueUnformated.length >= 2) {
+        valueFormated += "." + valueUnformated.slice(2, 5);
     }
-    if (valueUnformated.length >= 6) {
-        valueFormated += "." + valueUnformated.slice(6, 9);
+    if (valueUnformated.length >= 5) {
+        valueFormated += "." + valueUnformated.slice(5, 8);
     }
-    if (valueUnformated.length >= 9) {
-        valueFormated += "/" + valueUnformated.slice(9, 13);
+    if (valueUnformated.length >= 8) {
+        valueFormated += "/" + valueUnformated.slice(8, 12);
     }
-    if (valueUnformated.length >= 13) {
-        valueFormated += "-" + valueUnformated.slice(13, 15);
+    if (valueUnformated.length >= 12) {
+        valueFormated += "-" + valueUnformated.slice(12, 14);
     }
     
     return valueFormated;
 };
 
-export const parseCnpj = (value) => value.replaceAll('.', '').replace('/', '').replace('-', '');
+export const parseCnpj = (value) => value.replaceAll('.', '').replace('/', '').replace('-', '').slice(0, 14);

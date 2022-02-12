@@ -1,6 +1,7 @@
 import { fetchUtils } from 'react-admin';
-import drfProvider from 'ra-data-drf';
+// import drfProvider from 'ra-data-drf';
 
+import drfProvider from './drfProvider';
 import { authVerify } from '../authProvider';
 
 const httpClient = async (url, options = {}) => {

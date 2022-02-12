@@ -64,7 +64,7 @@ const BudgetRequestEdit = props => {
                         maxRows={5}
                         className={classes.inputXLg}
                     />
-                    <CustomOptionInput source="status" required />
+                    <CustomOptionInput source="status" required disabled />
                 </FormTab>
                 <FormTab label="resources.budget_request.tabs.decline">
                     <CustomOptionInput source="reason_decline" />

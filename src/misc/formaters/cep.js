@@ -12,4 +12,4 @@ export const formatCep = (value) => {
     return valueFormated
 };
 
-export const parseCep = (value) => value.replace('.', '').replace('-', '');
+export const parseCep = (value) => value.replace('.', '').replace('-', '').slice(0, 5);

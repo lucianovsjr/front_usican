@@ -21,4 +21,4 @@ export const formatCpf = (value) => {
     return valueFormated;
 };
 
-export const parseCpf = (value) => value.replaceAll('.', '').replace('-', '');
+export const parseCpf = (value) => value.replaceAll('.', '').replace('-', '').slice(0, 11);;
