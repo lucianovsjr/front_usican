@@ -10,6 +10,7 @@ import authProvider from './authProvider';
 import i18nProvider from './translation';
 import LoginPage from './Login';
 import Layout from './Layout';
+import theme from './theme';
 
 import Customer from './resource/Customer';
 import Contact from './resource/Contact';
@@ -25,6 +26,7 @@ const App = () => (
     i18nProvider={i18nProvider}
     loginPage={LoginPage}
     layout={Layout}
+    theme={theme}
   >
     {/* Inventory */}
     <Resource
