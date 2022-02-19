@@ -22,12 +22,8 @@ const budgetRequestMessages = {
             sucessCreate: 'Solicitação de Orçamento criado com sucesso',
             sucessUpdate: 'Solicitação de Orçamento alterado com sucesso',
             sucessDelete: 'Solicitação de Orçamento removido com sucesso',
-            cancelInvalid: 'Orçamento não está Aberto |||| Orçamentos não estão Abertos',
             cancelSuccess: 'Orçamento cancelado com sucesso |||| Orçamentos cancelados com sucesso',
-            cancelFailure: 'Ocorreu um erro ao cancelar Orçamento |||| Ocorreu um erro ao cancelar os Orçamentos',
-            reopenInvalid: 'Orçamento não está Cancelado ou Declinado |||| Orçamentos não estão Cancelados ou Declinados',
             reopenSuccess: 'Orçamento Aberto com sucesso |||| Orçamentos Abertos com sucesso',
-            reopenFailure: 'Ocorreu um erro ao Abrir Orçamento |||| Ocorreu um erro ao Abrir os Orçamentos',
         },
         helper_text: {
             deadline: 'Prazo em dias',

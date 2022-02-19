@@ -1,4 +1,4 @@
-import { defaultTheme, Notification } from 'react-admin';
+import { defaultTheme } from 'react-admin';
 
 import merge from 'lodash/merge';
 
