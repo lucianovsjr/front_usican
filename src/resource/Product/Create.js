@@ -21,7 +21,7 @@ const ProductCreate = props => {
     const redirect = useRedirect();
 
     const onSuccess = () => {
-        notify('resources.product.messages.sucessCreate', { type: 'success' });
+        notify('resources.product.messages.sucessCreate', 'success');
         redirect('/product');
     };
     

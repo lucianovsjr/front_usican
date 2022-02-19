@@ -26,7 +26,7 @@ const BudgetRequestEdit = props => {
     const redirect = useRedirect();
 
     const onSuccess = () => {
-        notify('resources.budget_request.messages.sucessCreate', { type: 'success' });
+        notify('resources.budget_request.messages.sucessCreate', 'success');
         redirect('/budget_request');
     };
     

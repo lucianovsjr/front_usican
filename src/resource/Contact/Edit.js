@@ -24,7 +24,7 @@ const ContactEdit = props => {
     const classes = useStyles();
 
     const onSuccess = ({ data }) => {
-        notify('resources.contact.messages.sucessUpdate', { type: 'success' });
+        notify('resources.contact.messages.sucessUpdate', 'success');
         redirect(data.link_redirect);
     };
 
