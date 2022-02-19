@@ -1,8 +1,9 @@
 import React from "react";
-import { List, Datagrid, TextField, FunctionField, ReferenceField, BulkDeleteButton  } from "react-admin";
+import { List, Datagrid, TextField, FunctionField, BulkDeleteButton  } from "react-admin";
 
 import CustomOptionField from '../../components/CustomOptionField';
 import DateField from '../../components/ra/DateField';
+import ReferenceField from '../../components/ra/ReferenceField';
 
 import filters from './filters';
 import CancelButton from './components/CancelButton'
@@ -24,7 +25,7 @@ const BudgetRequestList = props => (
         empty={false}
         bulkActionButtons={<BudgetRequestBulActionButtons />}
     >
-        <Datagrid rowClick={(id, basePath, record) => record.status === 6 ? 'show' : 'edit'}>
+        <Datagrid rowClick="edit">
             <ReferenceField source="customer" reference="customer">
                 <TextField source="name" />
             </ReferenceField>

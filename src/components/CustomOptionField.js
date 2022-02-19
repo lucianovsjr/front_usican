@@ -1,5 +1,7 @@
 import React from 'react';
-import { ReferenceField, TextField } from 'react-admin';
+import { TextField } from 'react-admin';
+
+import ReferenceField from '../components/ra/ReferenceField';
 
 const CustomOptionField = (props) => (
     <ReferenceField  {...props} reference="custom_option_item">

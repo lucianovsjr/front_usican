@@ -16,8 +16,10 @@ import {
 import CustomOptionInput from '../../components/CustomOptionInput';
 import DefaultActions from '../../components/DefaultActions';
 
+import BudgetRequestToolbar from './components/Toolbar';
 import useStyles from "./styles";
 import validation from "./validation";
+import transform from './transformData';
 
 const BudgetRequestEdit = props => {
     const classes = useStyles();
@@ -25,13 +27,19 @@ const BudgetRequestEdit = props => {
     const redirect = useRedirect();
 
     const onSuccess = () => {
-        notify('resources.budget_request.messages.sucessCreate', { type: 'success' });
+        notify('resources.budget_request.messages.sucessCreate', 'success');
         redirect('/budget_request');
     };
     
     return (
-        <Edit {...props} onSuccess={onSuccess} mutationMode="pessimistic" actions={<DefaultActions />}>
-            <TabbedForm redirect="list" validate={validation.validationBudgetRequest}>
+        <Edit
+            {...props}
+            onSuccess={onSuccess}
+            mutationMode="pessimistic"
+            actions={<DefaultActions />}
+            transform={transform}
+        >
+            <TabbedForm redirect="list" validate={validation.validationBudgetRequest} toolbar={<BudgetRequestToolbar />}>
                 <FormTab label="resources.budget_request.tabs.general">
                     <ReferenceInput source="customer" reference="customer" required disabled>
                         <SelectInput optionText="name" />

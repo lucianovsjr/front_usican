@@ -34,12 +34,12 @@ const CustomerCreate = props => {
     const redirect = useRedirect();
 
     const onSuccess = () => {
-        notify('resources.customer.messages.sucessCreate', { type: 'success' });
+        notify('resources.customer.messages.sucessCreate', 'success');
         redirect('/customer');
     };
 
     const onErroCepFetch = () => {
-        notify('resources.customer.messages.invalidCep', { type: 'info' });
+        notify('resources.customer.messages.invalidCep', 'info');
     };
 
     return (

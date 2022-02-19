@@ -34,7 +34,7 @@ const BaseToolbar = props => {
 
     const onSuccessSave = ({ data }) => {
         localStorage.removeItem(props.resource);
-        notify(`resources.${props.resource}.messages.sucessCreate`, { type: 'success' });
+        notify(`resources.${props.resource}.messages.sucessCreate`, 'success');
         redirect(get(data, 'link_redirect', 'list'));
     };
     

@@ -22,7 +22,7 @@ const ProductEdit = props => {
     const redirect = useRedirect();
 
     const onSuccess = () => {
-        notify('resources.product.messages.sucessUpdate', { type: 'success' });
+        notify('resources.product.messages.sucessUpdate', 'success');
         redirect('/product');
     };
     

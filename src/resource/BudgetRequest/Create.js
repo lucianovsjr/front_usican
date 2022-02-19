@@ -19,6 +19,7 @@ import DefaultActions from '../../components/DefaultActions';
 
 import useStyles from "./styles";
 import validation from "./validation";
+import transform from './transformData';
 
 const BudgetRequestCreate = props => {
     const classes = useStyles();
@@ -27,7 +28,7 @@ const BudgetRequestCreate = props => {
     const [customerCurrent, setCustomerCurrent] = useState('')
 
     const onSuccess = () => {
-        notify('resources.budget_request.messages.sucessCreate', { type: 'success' });
+        notify('resources.budget_request.messages.sucessCreate', 'success');
         redirect('/budget_request');
     };
     
@@ -36,7 +37,7 @@ const BudgetRequestCreate = props => {
             {...props}
             onSuccess={onSuccess}
             mutationMode="pessimistic"
-            transform={(data) => ({...data, deadline: !data.deadline ? null : data.deadline})}
+            transform={transform}
             actions={<DefaultActions />}
             record={{ status: 4 }}
         >

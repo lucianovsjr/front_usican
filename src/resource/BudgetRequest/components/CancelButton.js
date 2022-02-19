@@ -1,45 +1,37 @@
 import React from 'react';
-import { Button, useUpdateMany, useRefresh, useNotify, useUnselectAll, useListContext } from 'react-admin';
+import { Button, useUpdateMany, useRefresh, useNotify, useUnselectAll } from 'react-admin';
 
 import ClearIcon from '@material-ui/icons/Clear'
 
 const dataUpdate = { status: 7 };
 
-const CancelButton = ({ selectedIds, ...rest }) => {
+const CancelButton = ({ selectedIds, resource, ...rest }) => {
     const refresh = useRefresh();
     const notify = useNotify();
-    const unselecteAll = useUnselectAll();
-    const { data } = useListContext();
+    const unselectAll = useUnselectAll();
     const [updateMany, { loading }] = useUpdateMany(
         'budget_request',
         selectedIds,
         dataUpdate,
         {
             onSuccess: () => {
-                refresh();
                 notify('resources.budget_request.messages.cancelSuccess', 'success', { smart_count: selectedIds.length });
-                unselecteAll();
+                unselectAll(resource);
+                refresh();
             },
-            onFailure: () => notify('resources.budget_request.messages.cancelFailure', 'warning', { smart_count: selectedIds.length }),
+            onFailure: ({ message }) => {
+                notify(message, 'error')
+                refresh();
+            }
         },
     );
-
-    const handleClick = () => {
-        const budgetRequest = selectedIds.map(id => data[id]);
-        const isValid = budgetRequest.every(v => v.status === 4);
-        if (isValid) {
-            updateMany() 
-        } else {
-            notify('resources.budget_request.messages.cancelInvalid', 'warning', { smart_count: selectedIds.length })
-        }
-    }
 
     return (
         <Button
             {...rest}
             label="resources.budget_request.buttons.cancel"
             disabled={loading}
-            onClick={handleClick}
+            onClick={updateMany}
         >
             <ClearIcon />
         </Button>

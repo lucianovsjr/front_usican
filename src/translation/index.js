@@ -6,6 +6,7 @@ import contactMessages from './contact';
 import budgetRequestMessages from './budgetRequest';
 import productTypeMessages from './productType';
 import productMessages from './product';
+import error from './error';
 
 const resources = {
     resources: {
@@ -20,6 +21,7 @@ const messages = {
     'pt-br': {
         ...ptBrMessages,
         ...resources,
+        ...error,
     },
 };
 
