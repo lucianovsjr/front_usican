@@ -1,7 +1,9 @@
 import React from "react";
-import { List, Datagrid, TextField, BooleanField, ReferenceField  } from "react-admin";
+import { List, Datagrid, TextField, BooleanField  } from "react-admin";
 
 import ProductFilters from './filters';
+
+import ReferenceField from '../../components/ra/ReferenceField';
 
 const ProductList = props => (
     <List {...props} filters={ProductFilters} empty={false}>
