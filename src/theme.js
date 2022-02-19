@@ -2,8 +2,6 @@ import { defaultTheme, Notification } from 'react-admin';
 
 import merge from 'lodash/merge';
 
-console.log(defaultTheme);
-
 const theme = merge(defaultTheme, {
     palette: {
         error: {

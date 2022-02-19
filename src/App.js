@@ -67,7 +67,6 @@ const App = () => (
       list={BudgetRequest.List}
       edit={BudgetRequest.Edit}
       create={BudgetRequest.Create}
-      show={BudgetRequest.Show}
     />
     {/* Configurator */}
     <Resource name="custom_option" />

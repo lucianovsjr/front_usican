@@ -25,7 +25,7 @@ const BudgetRequestList = props => (
         empty={false}
         bulkActionButtons={<BudgetRequestBulActionButtons />}
     >
-        <Datagrid rowClick={(id, basePath, record) => record.status === 6 ? 'show' : 'edit'}>
+        <Datagrid rowClick="edit">
             <ReferenceField source="customer" reference="customer">
                 <TextField source="name" />
             </ReferenceField>
