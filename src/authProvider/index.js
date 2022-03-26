@@ -1,8 +1,11 @@
+import jwtDecode from 'jwt-decode';
+
 const baseUrl = 'http://localhost:8000/api';
 
 const authClean = () => {
 	localStorage.removeItem('token');
     localStorage.removeItem('refresh');
+    localStorage.removeItem('permission');
 };
 
 export const authVerify = async (refresh = true) => {
@@ -60,17 +63,18 @@ const authProvider = {
 			}),
 		});
 		return fetch(request)
-		.then(response => {
-			if (response.status < 200 || response.status >= 300) {
-				throw new Error(response.statusText);
-			}
-			return response.json();
-		})
-		.then(({ refresh, access }) => {
-			localStorage.setItem('token', access);
-			localStorage.setItem('refresh', refresh);
-			// localStorage.setItem('permissions', decodedToken.permissions);
-		});
+			.then(response => {
+				if (response.status < 200 || response.status >= 300) {
+					throw new Error(response.statusText);
+				}
+				return response.json();
+			})
+			.then(({ refresh, access }) => {
+				const decodedToken = jwtDecode(access);
+				localStorage.setItem('token', access);
+				localStorage.setItem('refresh', refresh);
+				localStorage.setItem('permissions', JSON.stringify(decodedToken.permissions));
+			});
 	},
 	checkError: async (error) => {
 		const { status } = error;
@@ -85,14 +89,12 @@ const authProvider = {
     },
     logout: () => {
         authClean();
-        // localStorage.removeItem('permissions');
         return Promise.resolve();
     },
     getIdentity: () => { /* ... */ },
     getPermissions: () => {
-        // const role = localStorage.getItem('permissions');
-        // return role ? Promise.resolve(role) : Promise.reject();
-		return Promise.resolve();
+        const permissions = localStorage.getItem('permissions');
+        return permissions ? Promise.resolve(JSON.parse(permissions)) : Promise.reject();
     }
 };
 

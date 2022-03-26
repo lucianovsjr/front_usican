@@ -10,6 +10,7 @@
     "@testing-library/user-event": "^12.1.10",
     "dotenv": "^10.0.0",
     "final-form": "^4.20.2",
+    "jwt-decode": "^3.1.2",
     "lodash": "^4.17.21",
     "moment": "^2.29.1",
     "ra-data-drf": "^2.0.0",
