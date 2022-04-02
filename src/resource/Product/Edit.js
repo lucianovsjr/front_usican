@@ -12,6 +12,7 @@ import {
 } from "react-admin";
 
 import DefaultActions from '../../components/DefaultActions';
+import EditToolbar from '../../components/EditToolbar';
 
 import useStyles from "./styles";
 import validation from "./validation";
@@ -28,7 +29,7 @@ const ProductEdit = props => {
     
     return (
         <Edit {...props} onSuccess={onSuccess} mutationMode="pessimistic" actions={<DefaultActions />}>
-            <TabbedForm redirect="list" validate={validation.validationProduct}>
+            <TabbedForm redirect="list" validate={validation.validationProduct} toolbar={<EditToolbar />}>
                 <FormTab label="resources.product.tabs.general">
                     <ReferenceInput source="product_type" reference="product_type" required validate={validation.validateProductType}>
                         <SelectInput optionText="name" />

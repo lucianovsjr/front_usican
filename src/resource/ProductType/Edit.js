@@ -2,6 +2,7 @@ import React from "react";
 import { Edit, TabbedForm, FormTab, TextInput, BooleanInput, useNotify, useRedirect } from "react-admin";
 
 import DefaultActions from '../../components/DefaultActions';
+import EditToolbar from '../../components/EditToolbar';
 
 import useStyles from './styles';
 import validation from './validation';
@@ -18,7 +19,7 @@ const ProductTypeEdit = props => {
 
     return (
         <Edit {...props} onSuccess={onSuccess} mutationMode="pessimistic" actions={<DefaultActions />}>
-            <TabbedForm redirect="list" validate={validation.validationProductType} >
+            <TabbedForm redirect="list" validate={validation.validationProductType} toolbar={<EditToolbar />}>
                 <FormTab label="resources.product_type.tabs.general">
                     <TextInput source="name" validate={validation.validateName} required className={classes.inputMd} />
                     <TextInput source="description" validate={validation.validateDescription} className={classes.inputXLg} />

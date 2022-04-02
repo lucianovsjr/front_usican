@@ -31,6 +31,7 @@ import cepFetch from '../../misc/cepFetch';
 
 import PhoneField from "../../components/PhoneField";
 import CreateRelationButton from "../../components/CreateRelationButton";
+import EditToolbar from '../../components/EditToolbar';
 
 import useStyles from './styles';
 import validation from './validation';
@@ -53,7 +54,7 @@ const CustomerEdit = props => {
     
     return (
         <Edit {...props} onSuccess={onSuccess} mutationMode="pessimistic" actions={<DefaultActions />}>
-            <TabbedForm redirect="list" validate={validation.validationCustomer}>
+            <TabbedForm redirect="list" validate={validation.validationCustomer} toolbar={<EditToolbar />}>
                 <FormTab label="resources.customer.tabs.identification">
                     <FormDataConsumer>
                         {({ formData, ...rest }) => {
