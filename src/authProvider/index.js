@@ -94,7 +94,11 @@ const authProvider = {
     getIdentity: () => { /* ... */ },
     getPermissions: () => {
         const permissions = localStorage.getItem('permissions');
-        return permissions ? Promise.resolve(JSON.parse(permissions)) : Promise.reject();
+		if (!permissions) {
+			authClean();
+            return Promise.reject();
+		}
+        return Promise.resolve(JSON.parse(permissions))
     }
 };
 

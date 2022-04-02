@@ -1,5 +1,5 @@
 import React from 'react';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useMemo } from 'react';
 import { Menu as raMenu, MenuItemLink, getResources, useTranslate } from 'react-admin';
 
 import { useSelector } from 'react-redux';
@@ -33,7 +33,7 @@ const useStyles = makeStyles(theme => ({
 
 const ModuleMenu = ({items, keyModule, title, Icon, open, subMenuIsOpen, handleToggle, dense}) => {
     const classes = useStyles();
-    const translate = useTranslate()
+    const translate = useTranslate();
 
     return (
         <SubMenu
@@ -67,9 +67,13 @@ const Menu = (props) => {
     const resources = useSelector(getResources);
     const open = useSelector(state => state.admin.ui.sidebarOpen)
 
-    const moduleResources = MODULES.map(module => resources.filter(resource => get(resource, 'options.module') === module.key))
-
     const [openMenus, setOpenMenus] = useState({});
+
+    const moduleResources = useMemo(() => MODULES.map(
+        module => resources.filter(
+            resource => get(resource, 'options.module') === module.key
+        ).sort((a, b) => get(a, 'options.order', 0) - get(b, 'options.order', 0))
+    ), [resources]);
 
     useEffect(() => {
         const menus = {};
@@ -86,7 +90,7 @@ const Menu = (props) => {
             {
                 MODULES.map(
                     (module, i) =>
-                        moduleResources[i]
+                        moduleResources[i].length > 0
                             && (
                                 <ModuleMenu
                                     items={moduleResources[i]}
