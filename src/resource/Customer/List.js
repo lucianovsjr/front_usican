@@ -1,13 +1,13 @@
 import React from 'react';
 import { List, Datagrid, TextField, BooleanField } from 'react-admin';
 
-import BulkActionButtons from '../../components/BulkActionButtons';
 import PhoneField from "../../components/PhoneField";
+import DefaultBulkActionButtons from "../../components/DefaultBulkActionButtons";
 
 import CustomerFilters from './filters';
 
 const CustomerList = props => (
-    <List {...props} bulkActionButtons={<BulkActionButtons />} filters={CustomerFilters} empty={false}>
+    <List {...props} bulkActionButtons={<DefaultBulkActionButtons />} filters={CustomerFilters} empty={false}>
         <Datagrid rowClick="edit">
             <TextField source="name" />
             <TextField source="email" />
