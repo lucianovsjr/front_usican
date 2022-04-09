@@ -1,23 +1,14 @@
 import React from "react";
-import { List, Datagrid, TextField, FunctionField, BulkDeleteButton  } from "react-admin";
+import { List, Datagrid, TextField, FunctionField  } from "react-admin";
 
 import CustomOptionField from '../../components/CustomOptionField';
 import DateField from '../../components/ra/DateField';
 import ReferenceField from '../../components/ra/ReferenceField';
 
-import { getResourcePermissions, CHANGE_PERM, DELETE_PERM } from '../../misc/permissions';
+import { getResourcePermissions } from '../../misc/permissions';
 
 import filters from './filters';
-import CancelButton from './components/CancelButton'
-import ReopenButton from './components/ReopenButton'
-
-const BudgetRequestBulActionButtons = ({ budgetRequestPerms, ...rest }) => (
-    <React.Fragment>
-        {budgetRequestPerms[CHANGE_PERM] && <CancelButton {...rest} />}
-        {budgetRequestPerms[CHANGE_PERM] && <ReopenButton {...rest} />}
-        {budgetRequestPerms[DELETE_PERM] && <BulkDeleteButton {...rest} />}
-    </React.Fragment>
-);
+import BudgetRequestBulkActionButtons from './components/BudgetRequestBulkActionButtons'
 
 const BudgetRequestList = props => {
     const budgetRequestPerms = React.useMemo(
@@ -30,7 +21,7 @@ const BudgetRequestList = props => {
             filters={filters}
             filterDefaultValues={{ status: 4 }}
             empty={false}
-            bulkActionButtons={<BudgetRequestBulActionButtons budgetRequestPerms={budgetRequestPerms} />}
+            bulkActionButtons={<BudgetRequestBulkActionButtons budgetRequestPerms={budgetRequestPerms} />}
         >
             <Datagrid rowClick="edit">
                 <ReferenceField source="customer" reference="customer">
