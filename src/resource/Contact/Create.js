@@ -3,7 +3,8 @@ import { Create, TextInput, TabbedForm, FormTab, maxLength } from "react-admin";
 import get from "lodash/get";
 
 import { formatPhone, parsePhone } from '../../misc/formaters/phone';
-import { CreateToolbar } from "../../components/Toolbar";
+
+import ContactCreateToolbar from './components/ContactCreateToolbar'
 
 import useStyles from './styles';
 import validation from './validation';
@@ -40,7 +41,7 @@ const ContactContainer = props => {
                     customer_name: get(location, "fatherResource.record.name"),
                     link_redirect: linkRedirect,
                 }}
-                toolbar={<CreateToolbar />}
+                toolbar={<ContactCreateToolbar />}
                 validate={validation.validationContact}
             >
                 <FormTab label="resources.contact.tabs.identification">

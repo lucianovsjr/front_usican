@@ -26,6 +26,7 @@ import { formatCpf, parseCpf } from '../../misc/formaters/cpf';
 import { formatCnpj, parseCnpj } from '../../misc/formaters/cnpj';
 import { formatPhone, parsePhone } from '../../misc/formaters/phone';
 import states from '../../misc/consts/states';
+import { getResourcePermissions, VIEW_PERM, CHANGE_PERM, ADD_PERM } from "../../misc/permissions";
 
 import cepFetch from '../../misc/cepFetch';
 
@@ -39,6 +40,11 @@ import validation from './validation';
 const CustomerEdit = props => {
     const [legalEntity, setLegalEntity] = useState("1")
     const [cep, setCep] = useState("")
+
+    const contactPerms = React.useMemo(
+        () => getResourcePermissions(props.permissions, props.resource)
+    , [props.permissions, props.resource])
+    
     const classes = useStyles();
     const notify = useNotify();
     const redirect = useRedirect();
@@ -168,25 +174,29 @@ const CustomerEdit = props => {
                         className={classes.inputSm}
                     />
                 </FormTab>
-                <FormTab label="resources.customer.tabs.contacts">
-                    <ReferenceManyField reference="contact" target="customer" sort={{ field: 'name', order: 'ASC' }} addLabel={false}>
-                        <Datagrid>
-                            <TextField source="name" />
-                            <TextField source="position" />
-                            <TextField source="email" />
-                            <PhoneField source="phone_number" />
-                            <PhoneField source="phone_number2" />
-                            <BooleanField source="active" />
-                            <EditButton />
-                        </Datagrid>
-                    </ReferenceManyField>
-                    <CreateRelationButton
-                        resourceRelation="contact"
-                        tabRedirect="3"
-                        label="resources.customer.buttons.createContact"
-                        className={classes.createRelationButton}
-                    />
-                </FormTab>
+                {contactPerms[VIEW_PERM] && (
+                    <FormTab label="resources.customer.tabs.contacts">
+                        <ReferenceManyField reference="contact" target="customer" sort={{ field: 'name', order: 'ASC' }} addLabel={false}>
+                            <Datagrid>
+                                <TextField source="name" />
+                                <TextField source="position" />
+                                <TextField source="email" />
+                                <PhoneField source="phone_number" />
+                                <PhoneField source="phone_number2" />
+                                <BooleanField source="active" />
+                                {contactPerms[CHANGE_PERM] && <EditButton />}
+                            </Datagrid>
+                        </ReferenceManyField>
+                        {contactPerms[ADD_PERM] && (
+                            <CreateRelationButton
+                                resourceRelation="contact"
+                                tabRedirect="3"
+                                label="resources.customer.buttons.createContact"
+                                className={classes.createRelationButton}
+                            />
+                        )}
+                    </FormTab>
+                )}
             </TabbedForm>
         </Edit>
     );

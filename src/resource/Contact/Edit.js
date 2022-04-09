@@ -11,7 +11,7 @@ import {
 } from "react-admin";
 
 import { formatPhone, parsePhone } from '../../misc/formaters/phone';
-import { EditToolbar } from "../../components/Toolbar";
+import ContactEditToolbar from "./components/ContactEditToolbar";
 
 import useStyles from './styles';
 import validation from './validation';
@@ -30,7 +30,7 @@ const ContactEdit = props => {
 
     return (
         <Edit {...props} onSuccess={onSuccess} mutationMode="pessimistic" actions={<Actions />}>
-            <TabbedForm toolbar={<EditToolbar />} validate={validation.validationContact}>
+            <TabbedForm toolbar={<ContactEditToolbar />} validate={validation.validationContact}>
                 <FormTab label="resources.contact.tabs.identification">
                     <TextInput
                         source="customer_name"
