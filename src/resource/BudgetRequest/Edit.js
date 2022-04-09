@@ -16,7 +16,7 @@ import {
 import CustomOptionInput from '../../components/CustomOptionInput';
 import DefaultActions from '../../components/DefaultActions';
 
-import BudgetRequestToolbar from './components/Toolbar';
+import BudgetRequestToolbar from './components/BudgetRequestToolbar';
 import useStyles from "./styles";
 import validation from "./validation";
 import transform from './transformData';
