@@ -8,6 +8,8 @@ import {
 
 import { makeStyles } from '@material-ui/styles';
 
+import { getResourcePermissions, CHANGE_PERM, DELETE_PERM } from "../misc/permissions";
+
 const styles = theme => ({
     defaultToolbar: {
         flex: 1,
@@ -25,42 +27,38 @@ const styles = theme => ({
 
 const useStyles = makeStyles(theme => styles(theme));
 
-const getPromisse = (permissions, resource, action) =>
-    permissions.findIndex(perm => perm.codename === `${action}_${resource.replaceAll('_', '')}`) >= 0;
-
 const EditToolbar = props => {
     const classes = useStyles();
-    const { loading, permissions } = usePermissions();
+    const { permissions } = usePermissions();
     
-    const viewPerm = React.useMemo(() => loading
-        ? false
-        : getPromisse(permissions, props.resource, 'delete')
-    , [loading, permissions, props.resource]);
-    const changePerm = React.useMemo(() => loading
-        ? false
-        : getPromisse(permissions, props.resource, 'change')
-    , [loading, permissions, props.resource]);
+    const resourcePerms = React.useMemo(
+        () => getResourcePermissions(permissions, props.resource)
+    , [permissions, props.resource])
     
     return (
         <Toolbar {...props} className={classes.defaultToolbar}>
-            <SaveButton
-                handleSubmitWithRedirect={
-                    props.handleSubmitWithRedirect || props.handleSubmit
-                }
-                disabled={!changePerm || props.disabled}
-                invalid={props.invalid}
-                redirect={props.redirect}
-                saving={props.saving || props.validating}
-                submitOnEnter={props.submitOnEnter}
-            />
-            {props.record && typeof props.record.id !== 'undefined' && (
+            {resourcePerms[CHANGE_PERM] ? (
+                <SaveButton
+                    handleSubmitWithRedirect={
+                        props.handleSubmitWithRedirect || props.handleSubmit
+                    }
+                    disabled={props.disabled}
+                    invalid={props.invalid}
+                    redirect={props.redirect}
+                    saving={props.saving || props.validating}
+                    submitOnEnter={props.submitOnEnter}
+                />
+            ) : <div />}
+            {props.record 
+                && typeof props.record.id !== 'undefined'
+                && resourcePerms[DELETE_PERM]
+                && (
                     <DeleteButton
                         basePath={props.basePath}
                         record={props.record}
                         resource={props.resource}
                         undoable={props.undoable}
                         mutationMode={props.mutationMode}
-                        disabled={!viewPerm}
                     />
                 )}
         </Toolbar>
